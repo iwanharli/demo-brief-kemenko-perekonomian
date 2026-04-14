@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Senior-friendly warm color palette */
+    --background: 40 33% 97%;
+    --foreground: 230 25% 14%;
+    --card: 40 30% 98%;
+    --card-foreground: 230 25% 14%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 230 25% 14%;
+    --primary: 230 45% 27%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 40 25% 92%;
+    --secondary-foreground: 230 25% 14%;
+    --muted: 40 15% 90%;
+    --muted-foreground: 40 8% 40%;
+    --accent: 45 80% 47%;
+    --accent-foreground: 230 25% 14%;
+    --destructive: 0 72% 41%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 20% 85%;
+    --input: 40 20% 88%;
+    --ring: 230 45% 27%;
+    --radius: 0.5rem;
+    
+    /* Custom theme colors */
+    --ink: #1a1a2e;
+    --paper: #faf8f5;
+    --cream: #f5f0e8;
+    --gold: #c9a227;
+    --crimson: #b5182b;
+    --navy: #1a3d6e;
+    --forest: #1a5c3a;
+    --amber: #e6a817;
+    --slate: #4a5568;
+    --warmgray: #6b6660;
+    
+    /* Status colors */
+    --status-safe: #1a5c3a;
+    --status-warning: #e6a817;
+    --status-danger: #b5182b;
+    
+    /* Sidebar */
+    --sidebar-background: 40 30% 96%;
+    --sidebar-foreground: 230 25% 14%;
+    --sidebar-primary: 230 45% 27%;
+    --sidebar-primary-foreground: 40 33% 97%;
+    --sidebar-accent: 40 25% 92%;
+    --sidebar-accent-foreground: 230 25% 14%;
+    --sidebar-border: 40 20% 85%;
+    --sidebar-ring: 230 45% 27%;
+    
+    /* Font sizes for seniors - larger base */
+    --font-size-base: 1.0625rem;
+    --line-height-base: 1.7;
+  }
+
+  .dark {
+    --background: 230 25% 10%;
+    --foreground: 40 20% 95%;
+    --card: 230 25% 12%;
+    --card-foreground: 40 20% 95%;
+    --popover: 230 25% 12%;
+    --popover-foreground: 40 20% 95%;
+    --primary: 45 80% 55%;
+    --primary-foreground: 230 25% 10%;
+    --secondary: 230 20% 18%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 230 20% 18%;
+    --muted-foreground: 40 15% 65%;
+    --accent: 45 80% 55%;
+    --accent-foreground: 230 25% 10%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 230 20% 22%;
+    --input: 230 20% 22%;
+    --ring: 45 80% 55%;
+    --sidebar-background: 230 25% 10%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 45 80% 55%;
+    --sidebar-primary-foreground: 230 25% 10%;
+    --sidebar-accent: 230 20% 18%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 230 20% 22%;
+    --sidebar-ring: 45 80% 55%;
+  }
+  
+  /* High contrast mode for seniors */
+  .high-contrast {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 30%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 60%;
+    --input: 0 0% 80%;
+    --ring: 0 0% 0%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    font-size: var(--font-size-base);
+  }
+  
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Senior-friendly typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    @apply font-semibold tracking-tight;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+  
+  p {
+    @apply text-base leading-relaxed;
+  }
+  
+  /* Focus states for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-navy ring-offset-2 ring-offset-paper;
+  }
+  
+  /* Selection colors */
+  ::selection {
+    @apply bg-navy/20 text-ink;
+  }
+}
+
+@layer components {
+  /* Senior-friendly button styles */
+  .btn-senior {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-medium 
+           rounded-lg transition-all duration-200 ease-out
+           focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2
+           active:scale-[0.98] min-h-[52px];
+  }
+  
+  .btn-senior-primary {
+    @apply btn-senior bg-navy text-white hover:bg-navy/90 shadow-soft;
+  }
+  
+  .btn-senior-secondary {
+    @apply btn-senior bg-cream text-ink hover:bg-cream/80 border border-border;
+  }
+  
+  .btn-senior-accent {
+    @apply btn-senior bg-gold text-ink hover:bg-gold/90 shadow-soft;
+  }
+  
+  /* Card styles */
+  .card-senior {
+    @apply bg-white rounded-xl border border-border/60 shadow-card 
+           transition-all duration-300 hover:shadow-soft hover:border-border;
+  }
+  
+  /* Section styles */
+  .section-senior {
+    @apply py-8 md:py-12 px-4 md:px-6 lg:px-8;
+  }
+  
+  /* Navigation styles */
+  .nav-item-senior {
+    @apply px-4 py-3 text-base font-medium text-warmgray hover:text-ink 
+           transition-colors duration-200 rounded-lg hover:bg-cream/50
+           focus-visible:ring-2 focus-visible:ring-navy;
+  }
+  
+  .nav-item-senior-active {
+    @apply nav-item-senior bg-navy/10 text-navy font-semibold;
+  }
+  
+  /* Status badges */
+  .badge-status {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full;
+  }
+  
+  .badge-safe {
+    @apply badge-status bg-forest/10 text-forest border border-forest/20;
+  }
+  
+  .badge-warning {
+    @apply badge-status bg-amber/10 text-amber border border-amber/20;
+  }
+  
+  .badge-danger {
+    @apply badge-status bg-crimson/10 text-crimson border border-crimson/20;
+  }
+  
+  /* Data chips */
+  .data-chip {
+    @apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md;
+  }
+  
+  /* Accordion styles */
+  .accordion-senior {
+    @apply border border-border/60 rounded-xl overflow-hidden bg-white shadow-card;
+  }
+  
+  .accordion-trigger-senior {
+    @apply w-full flex items-center justify-between p-5 text-left 
+           hover:bg-cream/30 transition-colors duration-200
+           focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-navy;
+  }
+  
+  /* Table styles */
+  .table-senior {
+    @apply w-full text-base border-collapse;
+  }
+  
+  .table-senior th {
+    @apply px-4 py-3 text-left font-semibold bg-navy text-white;
+  }
+  
+  .table-senior td {
+    @apply px-4 py-3 border-b border-border/60;
+  }
+  
+  .table-senior tr:hover td {
+    @apply bg-cream/30;
+  }
+  
+  /* Typography helpers */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Reading width for seniors */
+  .reading-width {
+    @apply max-w-3xl;
+  }
+  
+  /* Large touch targets */
+  .touch-large {
+    @apply min-h-[48px] min-w-[48px];
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-out forwards;
+  }
+  
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--warmgray) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--warmgray);
+    border-radius: 4px;
+  }
+  
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
